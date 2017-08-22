@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB  
 from sklearn import cross_validation 
  
-from utilities import visualize_classifier
+from ..utils import utilities
 
 # Input file containing data 
 input_file = 'data_multivar_nb.txt'
@@ -26,7 +26,7 @@ accuracy = 100.0 * (y == y_pred).sum() / X.shape[0]
 print("Accuracy of Naïve Bayes classifier =", round(accuracy, 2), "%") 
  
 # Visualize the performance of the classifier 
-visualize_classifier(classifier, X, y) 
+utilities.visualize_classifier(classifier, X, y) 
 
 # Split data into training and test data  
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2, random_state=3) 
@@ -39,7 +39,7 @@ accuracy = 100.0 * (y_test == y_test_pred).sum() / X_test.shape[0]
 print("Accuracy of the new classifier =", round(accuracy, 2), "%") 
  
 # Visualize the performance of the classifier 
-visualize_classifier(classifier_new, X_test, y_test)
+utilities.visualize_classifier(classifier_new, X_test, y_test)
 
 
 num_folds = 3 

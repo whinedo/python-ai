@@ -57,13 +57,14 @@ classifier = OneVsOneClassifier(LinearSVC(random_state=0))
 #Train the classifier 
 classifier.fit(X, y)
 
-print(X)
-print(y)
+print("X:",X)
+print("y:",y)
 
 # Cross validation 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2, random_state=5) 
 classifier = OneVsOneClassifier(LinearSVC(random_state=0)) 
 classifier.fit(X_train, y_train) 
+print(X_test)
 y_test_pred = classifier.predict(X_test)
 
 print("y_test_pred",y_test_pred)
@@ -81,9 +82,6 @@ for i, item in enumerate(input_data):
     if item.isdigit(): 
         input_data_encoded[i] = int(input_data[i]) 
     else: 
-        print(count)
-        print (dir(label_encoder[count]))
-        print (input_data[i])
         input_data_encoded[i] = int(label_encoder[count].transform([input_data[i]])) 
         count += 1
 	
@@ -91,7 +89,8 @@ for i, item in enumerate(input_data):
 input_data_encoded = np.array(input_data_encoded)
 
 # Run classifier on encoded datapoint and print output 
-predicted_class = classifier.predict(input_data_encoded) 
+predicted_class = classifier.predict([input_data_encoded]) 
+print(count)
 print(label_encoder[-1].inverse_transform(predicted_class)[0])
 
 
